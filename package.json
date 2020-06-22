@@ -1,0 +1,22 @@
+{
+  "name": "budget-app",
+  "version": "1.0.0",
+  "description": "Budget app from UDemy course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lowe54/budget-app.git"
+  },
+  "author": "James Lowe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lowe54/budget-app/issues"
+  },
+  "homepage": "https://github.com/Lowe54/budget-app#readme",
+  "dependencies": {
+    "jshint": "^2.11.1"
+  }
+}
