@@ -22,3 +22,20 @@ var UIController = (function(){
     }
 })();
 
+var controller = (function(UICtrl){
+    var DOMstrings = UICtrl.getDOMStrings();
+
+    var ctrlAddItem = function() {
+        var input = UICtrl.getInput();
+        console.log(input)
+    }
+
+    document.querySelector(DOMstrings.addButton).addEventListener('click', ctrlAddItem)
+    
+    document.addEventListener('keypress', function(){
+        if(event.keyCode === 13 || event.which === 13){
+            ctrlAddItem();
+        }
+    })
+})(UIController);
+
