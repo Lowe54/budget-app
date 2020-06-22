@@ -55,7 +55,9 @@ var UIController = (function () {
 		inputType: '.add__type',
 		inputDescription: '.add__description',
 		inputValue: '.add__value',
-		addButton: '.add__btn'
+		addButton: '.add__btn',
+		incomeContainer: '.income__list',
+		expenseContainer: '.expenses__list'
 	};
 
 	return {
@@ -66,7 +68,23 @@ var UIController = (function () {
 				value: document.querySelector(DOMstrings.inputValue).value
 			};
 		},
+		addListItem: function(obj, type) {
+			var html, newHTML, element;
+			
+			if(type === 'inc'){
+				html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+			}else {
+				html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+			}
+			
+			newHTML = html.replace('%id%', obj.id);
+			newHTML = newHTML.replace('%description%', obj.description);
+			newHTML = newHTML.replace('%value%', obj.value);
 
+			element = type === 'inc' ? DOMstrings.incomeContainer : DOMstrings.expenseContainer;
+			
+			document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
+		},
 		getDOMStrings: function () {
 			return DOMstrings;
 		}
@@ -95,6 +113,7 @@ var controller = (function (BudgetCtrl, UICtrl) {
 		
 		input = UICtrl.getInput();
 		newItem = BudgetCtrl.addItem(input.type, input.description, input.value);
+		UICtrl.addListItem(newItem, input.type);
 	};
 
 	return {
