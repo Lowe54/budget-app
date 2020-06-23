@@ -84,6 +84,18 @@ var UIController = (function () {
 			element = type === 'inc' ? DOMstrings.incomeContainer : DOMstrings.expenseContainer;
 			
 			document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
+
+		},
+		clearFields: function() {
+			var fields, fieldsArray;
+			
+			fields = document.querySelectorAll(DOMstrings.inputDescription +',' +DOMstrings.inputValue);
+			// Loop array and clear
+			fieldsArray = Array.prototype.slice.call(fields);
+
+			fieldsArray.forEach(function(cur, index, array){
+				cur.value = '';
+			});
 		},
 		getDOMStrings: function () {
 			return DOMstrings;
@@ -114,6 +126,7 @@ var controller = (function (BudgetCtrl, UICtrl) {
 		input = UICtrl.getInput();
 		newItem = BudgetCtrl.addItem(input.type, input.description, input.value);
 		UICtrl.addListItem(newItem, input.type);
+		UICtrl.clearFields();
 	};
 
 	return {
